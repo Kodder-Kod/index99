@@ -11,6 +11,7 @@ import { GiDialPadlock } from "react-icons/gi";
 import { FaPhoneAlt } from "react-icons/fa";
 import { useRouter } from 'next/navigation';
 import { useUserEmail, useUserID, useUserName, useUserPhone } from '@/app/components/zustand/profile';
+import Link from 'next/link';
 
 const Register = () => {
 
@@ -202,7 +203,7 @@ const Register = () => {
           </div>
 
           <div className="flex justify-between items-center mt-6">
-            <p className="text-sm text-gray-600 mb-4">Already have an account ? <a href="/" className="text-blue-500 hover:underline">Log In</a></p>
+            <p className="text-sm text-gray-600 mb-4">Already have an account ? <Link href="/" className="text-blue-500 hover:underline">Log In</Link></p>
           </div>
         </div>
       </div>

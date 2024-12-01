@@ -31,7 +31,7 @@ const About = () => {
                             </p>
                             <p className="text-md leading-relaxed">
                                 With a dedicated team of professionals, we strive to foster innovation,
-                                reliability, and excellence in everything we do. Whether you're here to
+                                reliability, and excellence in everything we do. Whether youre here to
                                 explore, collaborate, or grow, we have something special to offer you.
                             </p>
                         </div>
