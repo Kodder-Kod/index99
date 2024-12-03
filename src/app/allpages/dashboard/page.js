@@ -9,20 +9,6 @@ import Footer from "@/app/components/footer/page";
 
 
 
-const getWidth = () => {
-    const screenWidth = window.outerWidth;
-
-    console.log(screenWidth)
-
-    if (screenWidth >= 1024) {
-        return 700;  // PC mode
-    } else if (screenWidth >= 768) {
-        return 600;  // Tablet mode
-    } else {
-        return 400;  // Mobile mode
-    }
-}
-
 const MARKETSbig = [
     {
         id: 'BTCUSD',
@@ -30,25 +16,10 @@ const MARKETSbig = [
         market: 'BTCUSDT',
         alt: "Final Cut Pro 11",
         date: "Bitcoin",
-        width: getWidth(),
-        height: 400,
     },
 
 ];
 
-const getWidth2 = () => {
-    const screenWidth = window.outerWidth;
-
-    console.log(screenWidth)
-
-    if (screenWidth >= 1024) {
-        return 450;  // PC mode
-    } else if (screenWidth >= 768) {
-        return 450;  // Tablet mode
-    } else {
-        return 400;  // Mobile mode
-    }
-}
 
 const MARKETSmedium = [
 
@@ -58,8 +29,6 @@ const MARKETSmedium = [
         market: 'ETHUSDT',
         alt: "Final Cut Pro 11",
         date: "Etherium",
-        width: getWidth2(),
-        height: 300,
     },
     {
         id: 'XRPUSD',
@@ -67,8 +36,6 @@ const MARKETSmedium = [
         market: 'XRPUSDT',
         alt: "Apple Arcade Games",
         date: "XRP",
-        width: getWidth2(),
-        height: 300,
     },
     {
         id: 'DOGEUSD',
@@ -76,8 +43,6 @@ const MARKETSmedium = [
         market: 'DOGEUSDT',
         alt: "Final Cut Pro 11",
         date: "DOGE Coin",
-        width: getWidth2(),
-        height: 300,
     },
     {
         id: 'BCHUSD',
@@ -85,25 +50,10 @@ const MARKETSmedium = [
         market: 'BCHUSDT',
         alt: "Apple Arcade Games",
         date: "Bitcoin Cash",
-        width: getWidth2(),
-        height: 300,
     },
 
 ];
 
-const getWidth3 = () => {
-    const screenWidth = window.outerWidth;
-
-    console.log(screenWidth)
-
-    if (screenWidth >= 1024) {
-        return 275;  // PC mode
-    } else if (screenWidth >= 768) {
-        return 275;  // Tablet mode
-    } else {
-        return 400;  // Mobile mode
-    }
-}
 
 const MARKETSsmall = [
 
@@ -113,8 +63,6 @@ const MARKETSsmall = [
         market: 'SOLUSDT',
         alt: "Apple Arcade Games",
         date: "Solona",
-        width: getWidth3(),
-        height: 350,
     },
     {
         id: 'EURUSD',
@@ -122,8 +70,6 @@ const MARKETSsmall = [
         market: 'EURUSDT',
         alt: "Apple Arcade Games",
         date: "Euro",
-        width: getWidth3(),
-        height: 350,
     },
     {
         id: 'GBPUSD',
@@ -131,8 +77,6 @@ const MARKETSsmall = [
         market: 'GBPUSDT',
         alt: "Apple Arcade Games",
         date: "British Pound",
-        width: getWidth3(),
-        height: 350,
     }
 ];
 
@@ -146,15 +90,15 @@ const INTERVALS = [
     { value: '1d', label: '1 Day' },
 ];
 
-const IndependentChart = ({ market, title, interval, width, height, setInterval }) => {
+const IndependentChart = ({ market, title, interval, setInterval }) => {
     const chartContainerRef = useRef(null);
 
     useEffect(() => {
         if (!chartContainerRef.current) return;
 
         const chart = createChart(chartContainerRef.current, {
-            width: width,
-            height: height,
+            width: chartContainerRef.current.Width,
+            height: chartContainerRef.current.Height,
             layout: {
                 backgroundColor: '#111827',
                 textColor: '#000000',
@@ -203,9 +147,9 @@ const IndependentChart = ({ market, title, interval, width, height, setInterval 
     }, [market, interval]);
 
     return (
-        <div className=" shadow-lg p-4 my-6" style={{ borderRadius: 20, backgroundColor: '#303133' }}>
+        <div className=" shadow-lg p-4 my-6 " style={{ borderRadius: 20, backgroundColor: '#303133' }}>
             <h2 className="text-center text-xl font-bold  mb-4" style={{ color: '#d6d7d7' }}>{title}</h2>
-            <div ref={chartContainerRef} className=" w-full h-96"></div>
+            <div ref={chartContainerRef} className=" h-96 flex justify-center align-center"></div>
         </div>
     );
 };
@@ -263,32 +207,32 @@ const Dashboard = () => {
                     <div className="grid grid-cols-1 md:grid-cols-3 pt-1 ">
                         {/* Featured News */}
 
+
                         {MARKETSbig.map((content, index) => (
-                            <div key={index} className="col-span-4 bg-black text-white overflow-hidden md:flex" style={{ borderRadius: 30, backgroundColor: "#fffefe" }}>
-
-                                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-                                >
-                                    <IndependentChart
-                                        key={content.id}
-                                        market={content.market}
-                                        title={content.title}
-                                        interval={interval}
-                                        width={content.width}
-                                        height={content.height}
-                                        setInterval={setInterval}
-                                    />
-                                </div>
-
-                                <div className="p-6 flex flex-col justify-center">
-                                    <div key={index} className="mb-6">
-                                        <p className="text-sm uppercase mb-2 text-gray-400">{content.subtitle}</p>
-                                        <h2 className="text-2xl font-bold mb-4" style={{ color: '#1d1d1f' }}>{content.title}</h2>
-                                        <p className="text-sm text-gray-500 mt-2" style={{ color: "#77767a", fontSize: 17 }} >
-                                            {content.date}
-                                        </p>
-                                    </div>
-                                </div>
+                        <div key={index} className="col-span-4 bg-black text-white overflow-hidden md:flex" style={{ borderRadius: 30, backgroundColor: "#fffefe" }}>   
+                        {/* Container to set chart width */}
+                        <div className="flex-3/4 md:w-3/4 bg-white shadow-md overflow-hidden" >
+                            <IndependentChart
+                                key={content.id}
+                                market={content.market}
+                                title={content.title}
+                                interval={interval}
+                                setInterval={setInterval}
+                            />
+                        </div>
+                    
+                        {/* Container for text content taking up 1/4 */}
+                        <div className="p-6 flex flex-col justify-center flex-1/4 md:w-1/4">
+                            <div key={index} className="mb-6">
+                                <p className="text-sm uppercase mb-2 text-gray-400">{content.subtitle}</p>
+                                <h2 className="text-2xl font-bold mb-4" style={{ color: '#1d1d1f' }}>{content.title}</h2>
+                                <p className="text-sm text-gray-500 mt-2" style={{ color: "#77767a", fontSize: 17 }}>
+                                    {content.date}
+                                </p>
                             </div>
+                        </div>
+                    </div>
+                    
                         ))}
 
                         {/* Two Image Section */}
@@ -306,11 +250,9 @@ const Dashboard = () => {
                                         market={update.market}
                                         title={update.title}
                                         interval={interval}
-                                        width={update.width}
-                                        height={update.height}
                                         setInterval={setInterval}
                                     />
-                                    <div className="p-8"> {/* Increased padding for a roomier content area */}
+                                    <div className="p-5"> {/* Increased padding for a roomier content area */}
                                         <p className="text-sm uppercase font-bold" style={{ color: "#1d1d1f", }}>
                                             {update.title}
                                         </p>
@@ -322,6 +264,8 @@ const Dashboard = () => {
                                 </div>
                             ))}
                         </div>
+
+
 
                     </div>
 
@@ -335,8 +279,6 @@ const Dashboard = () => {
                                     market={feature.market}
                                     title={feature.title}
                                     interval={interval}
-                                    width={feature.width}
-                                    height={feature.height}
                                     setInterval={setInterval}
                                 />
                                 <div className="p-6">
@@ -348,9 +290,6 @@ const Dashboard = () => {
                     </div>
                 </main>
                 <Footer />
-
-
-
             </div>
         </>
     )
